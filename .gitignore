@@ -1,2 +1,4 @@
 /README.txt
 .idea
+/vendor/
+/composer.lock

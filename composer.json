@@ -1,0 +1,8 @@
+{
+  "name": "vitaly/fpdbtest",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "phpcompatibility/php-compatibility": "*"
+  },
+  "prefer-stable" : true
+}
