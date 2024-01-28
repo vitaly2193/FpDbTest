@@ -68,7 +68,7 @@ class Database implements DatabaseInterface
 
 		// Replace placeholders and handle conditional blocks
 		$query = preg_replace_callback('/\?([df#a]?)/', $callback, $query);
-		$query = $this->handleConditionalBlocks($query, $args, $index);
+		$query = $this->handleConditionalBlocks($query, $args);
 
 		return $query;
 	}
@@ -168,11 +168,10 @@ class Database implements DatabaseInterface
 	 *
 	 * @param string $query The SQL query template.
 	 * @param array  $args  The arguments array.
-	 * @param int    $index The current argument index.
 	 *
 	 * @return string The query with conditional blocks processed.
 	 */
-	private function handleConditionalBlocks(string $query, array $args, int &$index): string
+	private function handleConditionalBlocks(string $query, array $args): string
 	{
 		return preg_replace_callback(
 			'/\{([^{}]*)\}/',
@@ -180,16 +179,7 @@ class Database implements DatabaseInterface
 				$block      = $matches[1];
 				$hasSpecial = str_contains($block, self::SKIP_VALUE);
 
-				if (
-					$hasSpecial &&
-					isset($args[$index - 1]) && // Look back at the value, because the `$index` has already incremented.
-					$args[$index - 1] === self::SKIP_VALUE
-				) {
-					$index++; // Increment index if skip value is used.
-					return ''; // Remove the block.
-				}
-
-				return $block; // Include the block.
+				return $hasSpecial ? '' : $block; // Include or skip the block.
 			},
 			$query
 		);
