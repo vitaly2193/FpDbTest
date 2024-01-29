@@ -18,3 +18,4 @@ jobs:
         with:
           test-versions: 8.3-
           paths: ${{ github.workspace }}
+      - run: echo ${{ github.workspace }}
