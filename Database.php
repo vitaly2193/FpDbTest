@@ -20,6 +20,7 @@ class Database implements DatabaseInterface
 	 */
 	public function __construct(mysqli $mysqli)
 	{
+		echo get_parent_class(); // 'get_parent_class' call without arguments is deprecated.
 		$this->mysqli = $mysqli;
 	}
 
