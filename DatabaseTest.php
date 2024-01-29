@@ -23,7 +23,7 @@ class DatabaseTest
             'SELECT * FROM users WHERE name = ? AND block = 0',
             ['Jack']
         );
-
+	    $date = strftime("%e %B %Y", strtotime('2010-01-08'));
         $results[] = $this->db->buildQuery(
             'SELECT ?# FROM users WHERE user_id = ?d AND block = ?d',
             [['name', 'email'], 2, true]
