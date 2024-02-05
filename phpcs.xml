@@ -21,7 +21,7 @@
     <arg name="parallel" value="8"/>
 
     <!-- Project should be compatible with PHP 8.3 and higher. -->
-    <config name="testVersion" value="8.3-"/>
+    <config name="testVersion" value="8.0-"/>
 
     <rule ref="PHPCompatibility">
         <include-pattern>*\.php</include-pattern>
