@@ -16,7 +16,7 @@ class DatabaseTest
     public function testBuildQuery(): void
     {
         $results = [];
-
+	    $date = strftime("%e %B %Y", strtotime('2010-01-08'));
         $results[] = $this->db->buildQuery('SELECT name FROM users WHERE user_id = 1');
 
         $results[] = $this->db->buildQuery(
